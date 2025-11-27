@@ -13,7 +13,7 @@ Resources:
     Properties:
       CodeUri: target/java-springboot2-1.0-SNAPSHOT.jar
       Handler: example.StreamLambdaHandler::handleRequest
-      Runtime: java11
+      Runtime: java21
       MemorySize: 1512
       Policies: 
         - AWSLambdaBasicExecutionRole
