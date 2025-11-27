@@ -29,6 +29,7 @@ At the time of writing I collected the following observations:
 - it is quite transparent to wrap a springboot controller in a lambda handler (the build strips the tomcat distribution and adds instead an AWS library)
 
 ## Todo
+- upgrade to latest versions
 - consolidate traces, generate a report with max and 90ile
 - beef up the examples with more complex dependencies, for instance write a simple CRUD service connecting to a simple database
 - add a new target using a custom image, GraalVM and SpringBoot

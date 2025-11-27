@@ -26,4 +26,4 @@ Resources:
       Description: Dependencies for the blank sample app.
       ContentUri: lib/.
       CompatibleRuntimes:
-        - nodejs12.x
+        - nodejs24.x

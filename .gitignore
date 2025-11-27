@@ -13,6 +13,7 @@ springboot2/ response.json
 springboot2/response.json
 springboot2/url.txt
 nodejs-basic/package-lock.json
+nodejs-basic/lib/**
 gradle.properties
 
 */generated/**
