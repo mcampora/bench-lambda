@@ -7,10 +7,11 @@ TIMESTAMP=$(($(date +%s) * 1000 - 5 * 60 * 1000))  # 5 minutes ago in millisecon
 echo "Invoking function ${FUNCTION} asynchronously..."
 for i in {1..20}; do
   aws lambda invoke \
+    --cli-binary-format raw-in-base64-out \
     --function-name "${FUNCTION}:1" \
     out \
     --invocation-type Event \
-    --payload '{}' \
+    --payload '{"sleep": 1000}' \
     --output text > /dev/null
   echo "Invocation $i started"
 done

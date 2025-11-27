@@ -21,6 +21,7 @@ class InvokeTest {
   void invokeTest() {
     logger.info("Invoke TEST");
     HashMap<String,String> event = new HashMap<String,String>();
+    event.put("sleep", "1000");
     Context context = new TestContext();
     Handler handler = new Handler();
     List<String> result = handler.handleRequest(event, context);

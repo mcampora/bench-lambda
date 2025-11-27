@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.Map;
 
 // Handler value: example.Handler
-public class Handler implements RequestHandler<Map<String,String>, List<String>>{
+public class Handler implements RequestHandler<Map<String,String>, List<String>> {
   Gson gson = new GsonBuilder().setPrettyPrinting().create();
+  
   @Override
-  public List<String> handleRequest(Map<String,String> event, Context context)
-  {
+  public List<String> handleRequest(Map<String,String> event, Context context) {
     LambdaLogger logger = context.getLogger();
     // log execution details
     logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()));
@@ -24,13 +24,15 @@ public class Handler implements RequestHandler<Map<String,String>, List<String>>
     // process event
     logger.log("EVENT: " + gson.toJson(event));
     logger.log("EVENT TYPE: " + event.getClass());
+    int sleep = Integer.parseInt(event.get("sleep"));
+    logger.log("SLEEP: " + sleep);
     List<String> response = new ArrayList<String>();
     response.add("one");
     response.add("two");
     response.add("three");  
-    // sleep 1 second
+    // sleep 1 second for async test
     try {
-      Thread.sleep(1000);
+      Thread.sleep(sleep);
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
