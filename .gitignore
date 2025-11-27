@@ -1,0 +1,26 @@
+.DS_Store
+results/**
+results-old/**
+bucket-name.txt
+*/out.json
+*/out.yml
+*/out
+*/function-name.txt
+*/target/**
+*/node_modules/**
+notes.txt
+springboot2/ response.json
+springboot2/response.json
+springboot2/url.txt
+nodejs-basic/package-lock.json
+gradle.properties
+
+*/generated/**
+*/build/**
+*/.gradle/**
+*/url.txt
+
+*/.aws-sam
+.vscode/settings.json
+**/generated/**
+**/.gradle/**
