@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Parameters:
+  ImageUriParameter:
+    Type: String
+    Default: ""
+Resources:
+  Function:  
+    Type: AWS::Serverless::Function
+    Properties:
+      Architectures: ["arm64"]
+      Handler: org.springframework.cloud.function.adapter.aws.FunctionInvoker::handleRequest
+      CodeUri: target/function-native-zip.zip
+      Runtime: provided.al2023
+      Timeout: 30 
+      MemorySize: 1512   
+      # Function's execution role
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambda_ReadOnlyAccess
+        - AWSXrayWriteOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      #Tracing: PassThrough
+      Tracing: Active
+      #Layers:
+        #- !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:60"

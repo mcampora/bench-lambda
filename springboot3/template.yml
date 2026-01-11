@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: SpringBoot3 example with the aws-serverless-java-container library
+
+Globals:
+  Api:
+    # API Gateway regional endpoints
+    EndpointConfiguration: REGIONAL
+
+Resources:
+  function:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: target/springboot3-0.0.1-SNAPSHOT.jar
+      Handler: com.example.StreamLambdaHandler::handleRequest
+      Runtime: java21
+      MemorySize: 1512
+      Policies: 
+        - AWSLambdaBasicExecutionRole
+        - AWSLambda_ReadOnlyAccess
+        - AWSXrayWriteOnlyAccess
+        - AWSLambdaVPCAccessExecutionRole
+        - CloudWatchLambdaInsightsExecutionRolePolicy
+      Timeout: 60
+      #Tracing: PassThrough
+      Tracing: Active
+      Layers:
+        - !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:60"
+      Events:
+        HttpApiEvent:
+          Type: HttpApi
+          Properties:
+            TimeoutInMillis: 20000
+            PayloadFormatVersion: '1.0'
+
+Outputs:
+  SpringBootApi:
+    Description: URL for application
+    Value: !Sub 'https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/'
+    Export:
+      Name: SpringBootPetStoreApi

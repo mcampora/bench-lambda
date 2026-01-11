@@ -34,10 +34,19 @@ run_tests "Run the basic Java test" "nosnap" ./java-basic ${NB}
 run_tests "Run the Java test with snapstart" "snap" ./java-basic ${NB}
 
 # run Java Springboot tests
-run_tests "Run the SpringBoot test" "nosnap" ./springboot2 ${NB}
+run_tests "Run the SpringBoot test" "nosnap" ./springboot3 ${NB}
 
 # run Java Springboot tests with snapstart
-run_tests "Run the SpringBoot test with snapstart" "snap" ./springboot2 ${NB}
+run_tests "Run the SpringBoot test with snapstart" "snap" ./springboot3 ${NB}
+
+# run Java Springboot Cloud Function tests
+run_tests "Run the SpringBoot Cloud Function test" "nosnap" ./springboot3-function ${NB}
+
+# run Java Springboot Cloud Function tests with snapstart
+run_tests "Run the SpringBoot Cloud Function test with snapstart" "snap" ./springboot3-function ${NB}
+
+# run Java Springboot Cloud Function native tests
+run_tests "Run the SpringBoot Cloud Function native test" "nosnap" ./springboot3-function-graal ${NB}
 
 # cleanup the bucket
 ./5-cleanup-bucket.sh
