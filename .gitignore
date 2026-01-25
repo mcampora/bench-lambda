@@ -25,3 +25,6 @@ gradle.properties
 .vscode/settings.json
 **/generated/**
 **/.gradle/**
+
+*/META-INF/native-image
+springboot3-function/.sdkmanrc

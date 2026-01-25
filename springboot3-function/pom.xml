@@ -25,26 +25,16 @@
       </repository>
    </repositories>
    <dependencies>
-      <!--dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-logging</artifactId>
-            </exclusion>
-         </exclusions>
-		</dependency-->
       <dependency>
          <groupId>org.springframework.cloud</groupId>
          <artifactId>spring-cloud-function-adapter-aws</artifactId>
          <version>4.1.0</version>
       </dependency>
-      <!--dependency>
+      <dependency>
          <groupId>org.springframework.cloud</groupId>
-         <artifactId>spring-cloud-function-web</artifactId>
+         <artifactId>spring-cloud-starter-function-web</artifactId>
          <version>4.1.0</version>
-      </dependency-->
+      </dependency>
       <dependency>
          <groupId>com.amazonaws</groupId>
          <artifactId>aws-lambda-java-core</artifactId>
@@ -132,13 +122,13 @@
                <mainClass>com.example.Application</mainClass>
                <layout>JAR</layout>
             </configuration-->
-            <dependencies>
+            <!--dependencies>
                <dependency>
                   <groupId>org.springframework.boot.experimental</groupId>
                   <artifactId>spring-boot-thin-layout</artifactId>
                   <version>1.0.31.RELEASE</version>
                </dependency>
-            </dependencies>
+            </dependencies-->
          </plugin>
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>

@@ -26,23 +26,13 @@
    </repositories>
    <dependencies>
       <dependency>
-         <groupId>org.springframework.boot</groupId>
-         <artifactId>spring-boot-starter-web</artifactId>
-         <exclusions>
-            <exclusion>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-starter-logging</artifactId>
-            </exclusion>
-         </exclusions>
-      </dependency>
-      <dependency>
          <groupId>org.springframework.cloud</groupId>
          <artifactId>spring-cloud-function-adapter-aws</artifactId>
          <version>4.1.0</version>
       </dependency>
       <dependency>
          <groupId>org.springframework.cloud</groupId>
-         <artifactId>spring-cloud-function-web</artifactId>
+         <artifactId>spring-cloud-starter-function-web</artifactId>
          <version>4.1.0</version>
       </dependency>
       <dependency>
@@ -64,10 +54,10 @@
          <groupId>software.amazon.awssdk</groupId>
          <artifactId>url-connection-client</artifactId>
       </dependency>
-      <dependency>
+      <!--dependency>
          <groupId>org.slf4j</groupId>
          <artifactId>slf4j-simple</artifactId>
-      </dependency>
+      </dependency-->
    </dependencies>
    <dependencyManagement>
       <dependencies>
@@ -125,30 +115,19 @@
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
          </plugin>
-         <!--
+         <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+         </plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<configuration>
 					<createDependencyReducedPom>false</createDependencyReducedPom>
+               <shadedArtifactAttached>true</shadedArtifactAttached>
+               <shadedClassifierName>aws</shadedClassifierName>
 				</configuration>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<artifactSet>
-								<excludes>
-									<exclude>org.apache.tomcat.embed:*</exclude>
-								</excludes>
-							</artifactSet>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
-			-->
       </plugins>
    </build>
    <profiles>
@@ -167,8 +146,7 @@
                   <configuration>
                      <mainClass>com.example.Application</mainClass>
                        <buildArgs>
-                         --enable-url-protocols=http
-                         -H:+AddAllCharsets
+                         -H:IncludeResources=".*/name.txt$"
                       </buildArgs>
                   </configuration>
                   <executions>

@@ -1,6 +1,7 @@
 # first part: use a GraalVM image, add Maven and build the native service
 #-------------------------------------------------------------------------
 FROM ghcr.io/graalvm/native-image-community:21 as build
+#FROM ghcr.io/graalvm/native-image-community:21-muslib as build
 
 SHELL ["/bin/bash", "-c"]
 

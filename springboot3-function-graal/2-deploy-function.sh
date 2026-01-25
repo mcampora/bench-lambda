@@ -12,8 +12,14 @@ docker buildx build \
     --provenance=false \
     -t graalvm-builder:latest \
     .
+    
 # launch the maven build using the docker image
-docker run -it -v `pwd`:/build -v ~/.m2:/root/.m2 graalvm-builder:latest -c 'mvn clean -Pnative package -DskipTests'
+# that's a complex build
+# - it builds a fat jar
+# - launches the service in the background with the native agent to capture metadata
+# - invokes the service to generate the metadata
+# - builds the native image using the metadata
+docker run -it -v `pwd`:/build -v ~/.m2:/root/.m2 graalvm-builder:latest -c './build-with-metadata.sh'
 
 # package and deploy my lambda function
 aws cloudformation package --template-file ${TEMPLATE} --s3-bucket ${ARTIFACT_BUCKET} --output-template-file out.yml
