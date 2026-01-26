@@ -72,7 +72,7 @@
    </dependencyManagement>
    <build>
       <plugins>
-         <plugin>
+         <!--plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <executions>
                <execution>
@@ -89,36 +89,30 @@
                   </configuration>
                </execution>
             </executions>
-         </plugin>
+         </plugin>-->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
             <configuration>
                <archive>
                   <manifest>
-                     <addClasspath>true</addClasspath>
+							<mainClass>com.example.Application</mainClass>
+                     <!--addClasspath>true</addClasspath-->
                   </manifest>
-                  <manifestEntries>
+                  <!--manifestEntries>
                      <Class-Path>lib/</Class-Path>
-                  </manifestEntries>
+                  </manifestEntries-->
                </archive>
             </configuration>
          </plugin>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-               <release>21</release>
-            </configuration>
-         </plugin>
-         <plugin>
+         <!--plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>versions-maven-plugin</artifactId>
-         </plugin>
-         <plugin>
+         </plugin>-->
+         <!--plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <!--configuration>
+            <configuration>
                <mainClass>com.example.Application</mainClass>
                <layout>JAR</layout>
             </configuration-->
@@ -128,15 +122,36 @@
                   <artifactId>spring-boot-thin-layout</artifactId>
                   <version>1.0.31.RELEASE</version>
                </dependency>
-            </dependencies-->
-         </plugin>
+            </dependencies>
+         </plugin-->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
             <configuration>
                <createDependencyReducedPom>false</createDependencyReducedPom>
-               <shadedArtifactAttached>true</shadedArtifactAttached>
-               <shadedClassifierName>aws</shadedClassifierName>
+            </configuration>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<!--artifactSet>
+								<excludes>
+									<exclude>org.apache.tomcat.embed:*</exclude>
+								</excludes>
+							</artifactSet-->
+						</configuration>
+					</execution>
+				</executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+					<source>21</source>
+					<target>21</target>
             </configuration>
          </plugin>
       </plugins>

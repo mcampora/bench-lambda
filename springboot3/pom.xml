@@ -36,13 +36,11 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>com.amazonaws.serverless</groupId>
 			<artifactId>aws-serverless-java-container-springboot3</artifactId>
@@ -54,47 +52,50 @@
 			<version>[2.13.2,)</version>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.5.4</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.2.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.example.Springboot3Application</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
 				<version>3.6.1</version>
 				<configuration>
-				<createDependencyReducedPom>false</createDependencyReducedPom>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
 				</configuration>
 				<executions>
-				<execution>
-					<phase>package</phase>
-					<goals>
-					<goal>shade</goal>
-					</goals>
-					<configuration>
-					<artifactSet>
-						<excludes>
-						<exclude>org.apache.tomcat.embed:*</exclude>
-						</excludes>
-					</artifactSet>
-					</configuration>
-				</execution>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+						<configuration>
+							<!--artifactSet>
+								<excludes>
+									<exclude>org.apache.tomcat.embed:*</exclude>
+								</excludes>
+							</artifactSet-->
+						</configuration>
+					</execution>
 				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.14.1</version>
 				<configuration>
-				<source>21</source>
-				<target>21</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -119,5 +120,4 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
-
 </project>
