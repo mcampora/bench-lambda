@@ -72,24 +72,6 @@
    </dependencyManagement>
    <build>
       <plugins>
-         <!--plugin>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>copy-dependencies</id>
-                  <phase>prepare-package</phase>
-                  <goals>
-                     <goal>copy-dependencies</goal>
-                  </goals>
-                  <configuration>
-                     <outputDirectory>${project.build.directory}/classes/lib</outputDirectory>
-                     <overWriteReleases>false</overWriteReleases>
-                     <overWriteSnapshots>false</overWriteSnapshots>
-                     <overWriteIfNewer>true</overWriteIfNewer>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>-->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-jar-plugin</artifactId>
@@ -97,33 +79,10 @@
                <archive>
                   <manifest>
 							<mainClass>com.example.Application</mainClass>
-                     <!--addClasspath>true</addClasspath-->
                   </manifest>
-                  <!--manifestEntries>
-                     <Class-Path>lib/</Class-Path>
-                  </manifestEntries-->
                </archive>
             </configuration>
          </plugin>
-         <!--plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>versions-maven-plugin</artifactId>
-         </plugin>-->
-         <!--plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <configuration>
-               <mainClass>com.example.Application</mainClass>
-               <layout>JAR</layout>
-            </configuration-->
-            <!--dependencies>
-               <dependency>
-                  <groupId>org.springframework.boot.experimental</groupId>
-                  <artifactId>spring-boot-thin-layout</artifactId>
-                  <version>1.0.31.RELEASE</version>
-               </dependency>
-            </dependencies>
-         </plugin-->
          <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
