@@ -14,12 +14,6 @@ import java.io.IOException;
 // test reflection and native image difficulties
 import java.lang.reflect.Method;
     
-class StringCapitalizer {
-    static String capitalize(String input) {
-        return input.toUpperCase();
-    }
-}
-
 // I added this code to prove that by default native-image
 // does not include StringCapitalizer in the native image
 // and Class.forName() does not work
@@ -28,6 +22,13 @@ class StringCapitalizer {
 // it even detects dependencies if you use String constants
 // it fails if the String is loaded at runtime from a file or other source
 //
+
+class StringCapitalizer {
+    static String capitalize(String input) {
+        return input.toUpperCase();
+    }
+}
+
 class ReflectionExample {
     private static String readNameFromFile() throws IOException {
         try (InputStream inputStream = ReflectionExample.class.getClassLoader().getResourceAsStream("name.txt")) {
@@ -55,7 +56,6 @@ class ReflectionExample {
 
 @Component
 public class HelloHandler implements Supplier<List<String>> {  
-
     private static final Logger logger = LoggerFactory.getLogger(HelloHandler.class);
 
   	@Override

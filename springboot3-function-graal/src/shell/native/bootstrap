@@ -1,5 +1,3 @@
 #!/bin/sh
-
 cd ${LAMBDA_TASK_ROOT:-.}
-
-./springboot3-function-graal -Dlogging.level.org.springframework=DEBUG
+./springboot3-function-graal -Dlogging.level.org.springframework=INFO
