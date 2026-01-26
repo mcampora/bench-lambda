@@ -21,7 +21,6 @@ Resources:
         - AWSXrayWriteOnlyAccess
         - AWSLambdaVPCAccessExecutionRole
         - CloudWatchLambdaInsightsExecutionRolePolicy
-      #Tracing: PassThrough
       Tracing: Active
       #Layers:
         #- !Sub "arn:aws:lambda:${AWS::Region}:580247275435:layer:LambdaInsightsExtension:60"
