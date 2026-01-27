@@ -22,14 +22,10 @@ export AWS_SESSION_TOKEN="..."
 ## Observations
 At the time of writing I collected the following observations:
 - basic Java and basic JavaScript are comparable, ie. it takes 500-600ms to warmup the lambda in both cases
-- snapstart option brings marginal improvements to the basic Java example (100-200ms)
-- SpringBoot takes 6s to warmup, class loading and dependency injection takes its toll
-- this time snapstart brings significant improvements (1s to warmup)
-- the improvement is even more significant if you give more memory to the lambda (500ms), the amount of CPU allocated to the lambda is proportional to the allocated memory (so is the price)
+- snapstart option brings marginal improvements to the basic Java example (maybe even worst)
 - it is quite transparent to wrap a springboot controller in a lambda handler (the build strips the tomcat distribution and adds instead an AWS library)
-
-## Todo
-- upgrade to latest versions
-- consolidate traces, generate a report with max and 90ile
-- beef up the examples with more complex dependencies, for instance write a simple CRUD service connecting to a simple database
-- add a new target using a custom image, GraalVM and SpringBoot
+- SpringBoot takes 5s to warmup, class loading and dependency injection takes its toll
+- this time snapstart brings significant improvements (2s to warmup)
+- the improvement is more significant if you give more memory to the lambda, the amount of CPU allocated to the lambda is proportional to the allocated memory (so is the price)
+- Spring Cloud Function is leaner, 3s to warmup, 1s with snapstart
+- GraalVM native image is a killer, 0.5s to warmup
